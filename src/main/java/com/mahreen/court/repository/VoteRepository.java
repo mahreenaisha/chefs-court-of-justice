@@ -1,11 +1,11 @@
 package com.mahreen.court.repository;
 
 import com.mahreen.court.model.Vote;
+import com.mahreen.court.model.CaseSubmission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface VoteRepository extends JpaRepository<Vote, Long> {
-
-    boolean existsByCaseIdAndJurorUsername(Long caseId, String jurorUsername);
-
-    long countByCaseIdAndGuilty(Long caseId, boolean guilty);
+    List<Vote> findByCaseSubmission(CaseSubmission caseSubmission);
 }
