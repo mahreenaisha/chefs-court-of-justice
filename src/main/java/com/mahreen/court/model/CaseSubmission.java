@@ -1,7 +1,9 @@
 package com.mahreen.court.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({"id", "submittedBy", "submittedRole", "argumentText", "evidenceText", "status"})
 @Entity
 public class CaseSubmission {
 
@@ -19,9 +21,8 @@ public class CaseSubmission {
     @Enumerated(EnumType.STRING)
     private Role submittedRole;
 
-    private boolean approved;
-
-    // 🔹 Getters and Setters
+    @Enumerated(EnumType.STRING)
+    private CaseStatus status = CaseStatus.PENDING;
 
     public Long getId() {
         return id;
@@ -63,11 +64,12 @@ public class CaseSubmission {
         this.submittedRole = submittedRole;
     }
 
-    public boolean isApproved() {
-        return approved;
+    public CaseStatus getStatus() {
+        return status;
     }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
+    public void setStatus(CaseStatus status) {
+        this.status = status;
     }
+
 }
